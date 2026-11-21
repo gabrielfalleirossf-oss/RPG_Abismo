@@ -1,11 +1,35 @@
 /* Artes completas das evoluções raciais */
 .arte-etapa-v62 {
-  height: 150px;
+  height: 172px;
   overflow: hidden;
   position: relative;
   margin: -13px -13px 13px;
+  padding: 10px 14px 14px;
+  box-sizing: border-box;
   background: radial-gradient(circle, color-mix(in srgb, var(--raca-cor) 18%, transparent), transparent 70%);
 }
+
+/* O painel inteiro herda a identidade visual da raça selecionada. */
+.progressao-racial-v62[data-raca] {
+  --raca-profunda: #080d15;
+  --raca-brilho: color-mix(in srgb, var(--raca-cor) 36%, transparent);
+  background-color: var(--raca-profunda);
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--raca-profunda) 96%, transparent) 0 58%, color-mix(in srgb, var(--raca-profunda) 72%, transparent) 82%, var(--raca-profunda) 100%),
+    radial-gradient(circle at 82% 22%, var(--raca-brilho), transparent 34%),
+    var(--raca-fundo);
+  background-repeat: no-repeat;
+  background-size: cover, cover, 480px 480px;
+  background-position: center, center, right -55px top -70px;
+  background-blend-mode: normal, screen, normal;
+}
+
+.progressao-racial-v62[data-raca="uchiha"]{--raca-profunda:#14070d;--raca-brilho:#ef304f42}
+.progressao-racial-v62[data-raca="ghoul"]{--raca-profunda:#13080c;--raca-brilho:#c9273548}
+.progressao-racial-v62[data-raca="vampiro"]{--raca-profunda:#12070c;--raca-brilho:#b7152c4d}
+.progressao-racial-v62[data-raca="kitsune"]{--raca-profunda:#151006;--raca-brilho:#f38b2b42}
+.progressao-racial-v62[data-raca="fada"]{--raca-profunda:#07140f;--raca-brilho:#72d9aa42}
+.progressao-racial-v62[data-raca="elfo"]{--raca-profunda:#061416;--raca-brilho:#3fd7c842}
 
 .etapa-racial-v62 {
   isolation: isolate;
@@ -21,8 +45,8 @@
   background-image: var(--arte-fundo);
   background-size: cover;
   background-position: center;
-  opacity: .20;
-  filter: blur(17px) saturate(1.5);
+  opacity: .27;
+  filter: blur(12px) saturate(1.55);
   transform: scale(1.16);
   transition: opacity .3s ease, transform .35s ease;
 }
@@ -40,23 +64,19 @@
 
 .etapa-racial-v62:hover::before,
 .etapa-racial-v62.ativa::before {
-  opacity: .34;
+  opacity: .43;
   transform: scale(1.23);
 }
 
 .arte-etapa-v62::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 42px;
-  background: linear-gradient(transparent, #0b111a);
-  pointer-events: none;
+  display: none;
 }
 
 .arte-etapa-v62 img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
   filter: drop-shadow(0 0 12px color-mix(in srgb, var(--raca-cor) 42%, transparent));
   transition: transform .3s ease, filter .3s ease;
 }
