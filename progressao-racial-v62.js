@@ -56,8 +56,21 @@ async function montar(){if(document.body.dataset.rpg!=="abismo")return;const pai
 }
 window.RPG_RACAS=R;window.RPG_bonusRacial=somar;window.RPG_textosBonusRacial=textos;
 document.addEventListener("DOMContentLoaded",()=>{
- let tentativas=0;
- const tentar=()=>{montar();if(++tentativas>=30)clearInterval(repetir)};
+ let tentativas=0,emMontagem=false;
+ const tentar=async()=>{
+  if(emMontagem)return;
+  emMontagem=true;
+  try{
+   await montar();
+   if(document.querySelector("#painel-descricao .progressao-racial-v62")){
+    clearInterval(repetir);
+    return;
+   }
+   if(++tentativas>=30)clearInterval(repetir);
+  }finally{
+   emMontagem=false;
+  }
+ };
  const repetir=setInterval(tentar,400);
  setTimeout(tentar,80);
 });
