@@ -59,7 +59,7 @@ window.iniciarPainelMestreV7=async function(){
   async function carregarHistorico(mais=false){
     let query=auth.cliente.from("rolagens_campanha").select("*").eq("rpg",rpg).eq("campanha",campanha).order("criado_em",{ascending:false}).order("id",{ascending:false});
     if(mais)query=query.range(anteriores,anteriores+99);else query=query.range(0,99);
-    const {data,error}=await query;if(error){aviso("Para carregar o histórico, execute mestre-painel-v7.sql: "+error.message);return}
+    const {data,error}=await query;if(error){aviso("Para carregar o histórico, execute database/mestre-painel-v7.sql: "+error.message);return}
     if(mais||anteriores===0){anteriores+=data.length;acabou=data.length<100}
     const mapa=new Map(registros.map(r=>[r.id,r]));data.forEach(r=>mapa.set(r.id,r));registros=[...mapa.values()];desenharHistorico();
   }
@@ -77,7 +77,7 @@ window.iniciarPainelMestreV7=async function(){
   }
   async function carregarNpcs(){
     const {data,error}=await auth.cliente.from("npcs_monstros").select("*").eq("rpg",rpg).eq("campanha",campanha).order("criado_em");
-    if(error){aviso("Para criar NPCs e monstros, execute mestre-painel-v7.sql: "+error.message);return}
+    if(error){aviso("Para criar NPCs e monstros, execute database/mestre-painel-v7.sql: "+error.message);return}
     const cards=await Promise.all(data.map(p=>cartao(p,true))),lista=document.querySelector("#grade-npcs");lista.replaceChildren(...cards);
     if(!data.length)lista.appendChild(texto("p","Crie seu primeiro NPC ou monstro para esta campanha.","painel-vazio"));
   }

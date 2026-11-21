@@ -55,7 +55,7 @@ window.atualizarFichaV5=async function(personagem){
         personagem_id:personagem.id,usuario_id:auth.usuario.id,rpg:personagem.rpg,campanha:personagem.campanha,
         jogador_nome:auth.acesso.nome_exibicao,personagem_nome:personagem.nome,faces,resultados:valores,
         total,origem:prefixo.replace(/: $/,"")||"Dados",critico:valores.some(v=>v===faces),modificador
-      }).then(({error})=>{if(error){const aviso=document.querySelector("#mensagem");aviso.textContent="Rolagem feita, mas não foi salva no histórico. Confira mestre-painel-v7.sql no Supabase.";aviso.classList.remove("sucesso")}}).catch(()=>{document.querySelector("#mensagem").textContent="Sem conexão para salvar esta rolagem no histórico."});
+      }).then(({error})=>{if(error){const aviso=document.querySelector("#mensagem");aviso.textContent="Rolagem feita, mas não foi salva no histórico. Confira database/mestre-painel-v7.sql no Supabase.";aviso.classList.remove("sucesso")}}).catch(()=>{document.querySelector("#mensagem").textContent="Sem conexão para salvar esta rolagem no histórico."});
     }
   }
   document.querySelectorAll("#lista-pericias button.pericia").forEach(botao=>{

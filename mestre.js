@@ -18,7 +18,7 @@ async function listarPersonagens(){
   const {data,error}=await acessoMestre.cliente.from("personagens")
     .select("id,nome,foto_path,nivel,vida_atual,vida_max,energia_atual,energia_max,criado_em")
     .eq("rpg",rpgMestre).eq("campanha",campanhaMestre).order("criado_em",{ascending:true});
-  if(error){avisoMestre("Não foi possível carregar as fichas. Confira se mestre-schema-v1.sql foi executado.");return}
+  if(error){avisoMestre("Não foi possível carregar as fichas. Confira se database/mestre-schema-v1.sql foi executado.");return}
   if(!data.length){grade.innerHTML='<p class="mestre-vazio">Nenhum jogador criou personagem nesta campanha ainda.</p>';return}
   for(const personagem of data){
     const foto=await fotoPersonagem(personagem.foto_path),card=document.createElement("a");

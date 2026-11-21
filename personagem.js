@@ -118,7 +118,7 @@ async function iniciarFicha(){
         .eq("id",id).eq("usuario_id",auth.usuario.id)
         .select("nivel,vida_atual,vida_max,energia_atual,energia_max,experiencia,agilidade,forca,apt_magica,presenca,resistencia,pontos_atributo,origem")
         .single();
-      if(erroAtributo){mensagem(erroAtributo.message.includes("column")?"Execute o arquivo ficha-schema-v2.sql no Supabase antes de distribuir os pontos.":"Não foi possível salvar o atributo.");aplicarValoresFicha(valoresFicha);return}
+      if(erroAtributo){mensagem(erroAtributo.message.includes("column")?"Execute o arquivo database/ficha-schema-v2.sql no Supabase antes de distribuir os pontos.":"Não foi possível salvar o atributo.");aplicarValoresFicha(valoresFicha);return}
       valoresFicha=atualizado;aplicarValoresFicha(valoresFicha);mensagem("Ponto salvo!",true);
     });
   });
